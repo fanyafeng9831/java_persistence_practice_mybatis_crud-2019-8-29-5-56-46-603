@@ -1,9 +1,12 @@
 package tws.controller;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +27,21 @@ public class EmployeeController {
     @GetMapping("")
     public ResponseEntity<List<Employee>> getAll() {
         return ResponseEntity.ok(employeeMapper.selectAll());
+    }
+    
+    @PostMapping
+    public void insertEmployee(@Param("employee") Employee employee ) {
+    	employeeMapper.insertEmployee(employee);
+    }
+    
+    @PutMapping()
+    public int updateEmployee(@Param("id") int id,@RequestBody Employee employee ) {
+     return employeeMapper.updateEmployee(id, employee); 
+    }
+    
+    @DeleteMapping
+    public void deleteEmployee(@Param("id") int id) {
+     employeeMapper.deleteEmployee(id);
     }
 
 }

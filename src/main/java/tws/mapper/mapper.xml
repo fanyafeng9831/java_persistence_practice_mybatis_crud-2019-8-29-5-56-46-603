@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<mapper namespace="tws.repository.EmployeeMapper">
+	<select id="selectEmployee" resultType="tws.entity.Employee">
+	select *from employee
+	</select
+
+	<insert id="insertEmployee" parameterType="tws.entity.Employee">
+	insert into employee('id','name','age') values(#{employee.id},#{employee.name},#{employee.age}) 
+	</insert>
+	
+	<update id="updateEmployee" resultType="int" parameterType="tws.entity.Employee" >
+	update employee set name = #{employee.name} where id = #{id}
+	</update>
+	
+	<delete id="deleteEmployee" parameterType="tws.entity.Employee">
+	delete from employee where id = #{id}
+	</delete>
+</mapper>
